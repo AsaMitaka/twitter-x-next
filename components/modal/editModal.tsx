@@ -56,7 +56,7 @@ const EditModal = () => {
         onChange={(e) => setBio(e.target.value)}
         placeholder="Bio"
         type="text"
-        value={bio}
+        value={bio || ''}
       />
       <UploadImage
         disabled={isLoading}
