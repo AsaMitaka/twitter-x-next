@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const { currentUser } = await serverAuth(req);
+    const { currentUser } = await serverAuth(req, res);
     const { bio, profileImage, coverImage } = req.body;
 
     const updatedUser = await prismadb.user.update({
@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         profileImage,
       },
     });
-
+    console.log(updatedUser, 'EDIT');
     return res.status(200).json(updatedUser);
   } catch (error) {
     console.warn(error);
