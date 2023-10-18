@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     });
 
-    const followingCount = await prismadb.user.count({
+    const followersCount = await prismadb.user.count({
       where: {
         followingIds: {
           has: userId,
@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     });
 
-    return res.status(200).json({ ...user, followingCount });
+    return res.status(200).json({ ...user, followersCount });
   } catch (error) {
     console.warn(error);
     return res.status(400).end();
